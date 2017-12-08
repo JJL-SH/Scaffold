@@ -6,6 +6,7 @@ const url = require('url');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const imageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 
 const extractSass = new extractTextWebpackPlugin({
   // 定义文件输出名字
@@ -19,7 +20,7 @@ module.exports = {
       path.resolve(__dirname, 'src/app.js')
     ],
     // 提取第三方库，打包成vendors文件
-    vendors: ['react', 'react-dom']
+    vendors: CONFIG.vendors
   },
   output: {
     // 输出路径
@@ -79,6 +80,13 @@ module.exports = {
     // 清空打包目录
     new cleanWebpackPlugin(['dist']),
     // 提取css文件
-    extractSass
+    extractSass,
+    // 图片压缩
+    new imageminWebpackPlugin({
+      // disabled: process.env.NODE_ENV !== 'production',
+      pngquant: {
+        quality: '95-100'
+      }
+    })
   ]
 }

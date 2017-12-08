@@ -19,7 +19,7 @@ module.exports = {
       path.resolve(__dirname, 'src/app.js')
     ],
     // 提取第三方库，打包成vendors文件
-    vendors: ['react']
+    vendors: CONFIG.vendors
   },
   output: {
     // 输出路径
