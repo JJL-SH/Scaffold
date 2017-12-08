@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route } from 'react-router-dom';
+// 这里使用hash进行跳转，可以更改为 BrowserRouter 正常链接跳转
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 // 引入组件
 import Index from './js/Index';
 import Demo from './js/Demo';
@@ -10,13 +11,16 @@ import { Menu } from './js/Menu';
 import './scss/main.scss';
 
 ReactDOM.render(
-  <HashRouter>
+  <Router>
     <div>
       <Menu/>
-      <Route path="/" component={Index}/>
-      <Route path="/demo" component={Demo}/>
+      <Switch>
+        <Route exact path="/" component={Index}/>
+        <Route path="/demo" component={Demo}/>
+        <Redirect path="*" to="/"/>
+      </Switch>
     </div>
-  </HashRouter>,
+  </Router>,
   document.getElementById('app')
 )
 
