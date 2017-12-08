@@ -4,8 +4,8 @@ const webpack = require('webpack');
 const path = require('path');
 const url = require('url');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const openBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 
 const extractSass = new extractTextWebpackPlugin({
   // 定义文件输出名字
@@ -19,7 +19,7 @@ module.exports = {
       path.resolve(__dirname, 'src/app.js')
     ],
     // 提取第三方库，打包成vendors文件
-    vendors: ['react']
+    vendors: ['react', 'react-dom']
   },
   output: {
     // 输出路径
@@ -39,17 +39,9 @@ module.exports = {
       exclude: /node_modules/,
       use: extractSass.extract({
         use: [{
-          loader: 'css-loader',
-          options: {
-            // 使用sourcemap
-            sourceMap: true
-          }
+          loader: 'css-loader'
         }, {
-          loader: 'sass-loader',
-          options: {
-            // 使用sourcemap
-            sourceMap: true
-          }
+          loader: 'sass-loader'
         }]
       })
     }, {
@@ -75,7 +67,6 @@ module.exports = {
       }]
     }]
   },
-  devtool: "source-map",
   plugins: [
     // 使用自动生成index.html文件并把打包文件引入
     new htmlWebpackPlugin({
@@ -85,22 +76,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors'
     }),
+    // 清空打包目录
+    new cleanWebpackPlugin(['dist']),
     // 提取css文件
-    extractSass,
-    // 服务启动打开浏览器
-    new openBrowserWebpackPlugin({
-      url: url.format({
-        protocol: CONFIG.protocol,
-        host: CONFIG.host + ':' +CONFIG.port
-      })
-    }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  // 配置开发服务
-  devServer: {
-    inline: true,
-    hot: false,
-    host: CONFIG.host,
-    port: CONFIG.port
-  }
+    extractSass
+  ]
 }
