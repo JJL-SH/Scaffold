@@ -6,11 +6,14 @@ import { createStore } from 'redux';
 import { HashRouter as Router } from 'react-router-dom';
 // 引入组件
 import Index from './index';
+import reducer from './reducer';
 // 引入样式文件
 import './scss/main.scss';
 
+let store = createStore(reducer);
+
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <Router>
       <Index/>
     </Router>

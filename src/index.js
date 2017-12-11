@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// 引入组件
-import Page404 from './js/components/page404';
-import Home from './js/components/home';
-import About from './js/components/about';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import router from './router';
@@ -18,7 +14,8 @@ class Index extends Component {
         <h2>Public Page</h2>
         <h3>
           <Link to="/">Home</Link>&nbsp;|&nbsp;
-          <Link to="/about">About</Link>
+          <Link to="/about">About</Link>&nbsp;|&nbsp;
+          <Link to="/counter">Counter</Link>
         </h3>
         <Switch>
           {
