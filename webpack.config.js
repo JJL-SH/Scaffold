@@ -25,6 +25,11 @@ module.exports = {
     // 出入文件名称
     filename: '[name].[hash].js'
   },
+  resolve: {
+    alias: {
+      Action: path.resolve(__dirname, 'src/action')
+    }
+  },
   module: {
     rules: [{
       test: /\.jsx?$/,
