@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from '../action';
+import { INCREMENT, DECREMENT } from '../action/counter';
 
 const counter = (state = 0, action) => {
   switch (action) {

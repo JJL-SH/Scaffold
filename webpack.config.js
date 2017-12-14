@@ -2,10 +2,8 @@ const CONFIG = require('./config/config');
 
 const webpack = require('webpack');
 const path = require('path');
-const url = require('url');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const openBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 
 const extractSass = new extractTextWebpackPlugin({
   // 定义文件输出名字
@@ -75,7 +73,6 @@ module.exports = {
       }]
     }]
   },
-  devtool: "source-map",
   plugins: [
     // 使用自动生成index.html文件并把打包文件引入
     new htmlWebpackPlugin({
@@ -86,21 +83,6 @@ module.exports = {
       name: 'vendors'
     }),
     // 提取css文件
-    extractSass,
-    // 服务启动打开浏览器
-    new openBrowserWebpackPlugin({
-      url: url.format({
-        protocol: CONFIG.protocol,
-        host: CONFIG.host + ':' +CONFIG.port
-      })
-    }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  // 配置开发服务
-  devServer: {
-    inline: true,
-    hot: false,
-    host: CONFIG.host,
-    port: CONFIG.port
-  }
+    extractSass
+  ]
 }
