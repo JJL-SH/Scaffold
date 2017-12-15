@@ -4,11 +4,13 @@ const webpack = require('webpack');
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const extractSass = new extractTextWebpackPlugin({
   // 定义文件输出名字
   filename: '[name].[hash].css'
-})
+});
+const development = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: {
@@ -27,7 +29,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Action: path.resolve(__dirname, 'src/action')
+      Action: path.resolve(__dirname, 'src/action'),
+      Component: path.resolve(__dirname, 'src/component')
     }
   },
   module: {
@@ -45,13 +48,19 @@ module.exports = {
           loader: 'css-loader',
           options: {
             // 使用sourcemap
-            sourceMap: true
+            sourceMap: development
           }
         }, {
           loader: 'sass-loader',
           options: {
             // 使用sourcemap
-            sourceMap: true
+            sourceMap: development
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: development,
+            plugins: [autoprefixer('last 2 versions', 'ie 9')]
           }
         }]
       })

@@ -1,4 +1,8 @@
-// 重置样式
+/* 样式表初始化 */
 @import './base/normalize.css';
-// 图标字体
+/* 字体库 */
 @import '../fonts/alibaba/iconfont.css';
+/* 页面主体 */
+@import './page/index.scss';
+@import './page/home.scss';
+@import './page/about.scss';

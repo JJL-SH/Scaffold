@@ -1,7 +1,7 @@
-import Home from './components/home';
-import About from './components/about';
-import Counter from './components/counter';
-import Page404 from './components/page404';
+import Home from './page/home';
+import About from './page/about';
+import Counter from './page/counter';
+import Page404 from './page/page404';
 
 module.exports = [
   {

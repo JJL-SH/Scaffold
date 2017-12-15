@@ -6,9 +6,9 @@ class Home extends Component {
   }
   render() {
     return(
-      <div>
-        <h2>首页</h2>
-        <p>这个页面是首页！</p>
+      <div className="pHome">
+        <h2 className="pHome__title">首页</h2>
+        <p className="pHome__desc">此脚手架仅用于个人学习所用</p>
       </div>
     )
   }

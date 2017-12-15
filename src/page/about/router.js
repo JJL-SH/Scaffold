@@ -1,4 +1,4 @@
-import Me from './components/me';
+import Me from './page/me';
 
 module.exports = [
   {

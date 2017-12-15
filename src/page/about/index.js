@@ -8,10 +8,9 @@ class About extends Component {
   }
   render() {
     return(
-      <div>
-        <h2>关于</h2>
-        <p>这个页面是关于！</p>
-        <p><Link to={this.props.match.url + '/me'}>Me</Link></p>
+      <div className="pAbout">
+        <h2 className="pAbout__title">关于</h2>
+        <p className="pAbout__nav"><Link className="pAbout__nav-link" to={this.props.match.url + '/me'}>Me</Link></p>
         {
           // 路由输出
           router.map((route, index) => {
