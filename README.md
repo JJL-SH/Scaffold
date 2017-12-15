@@ -29,3 +29,4 @@ webpack.config.js
 - 使用了chrome的Redux开发工具，可以到商店下载
 - 路由使用了react-router-dom V4 版本
 - 添加了对saga的支持
+- 字体图标在 src/font/alibaba/demo_fontclass.html 查看，使用了alibaba字体库
