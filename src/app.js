@@ -8,7 +8,7 @@ import { HashRouter as Router } from 'react-router-dom';
 // 引入组件
 import Index from './index';
 import reducer from './reducer';
-import { mySaga } from './saga/counter';
+import saga from './saga';
 // 引入样式文件
 import './scss/main.scss';
 
@@ -18,7 +18,7 @@ let store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(sagaMiddleware)
 );
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(saga);
 
 ReactDOM.render(
   <Provider store={store}>

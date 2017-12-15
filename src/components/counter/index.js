@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { incrementCount, decrementCount, saga_incrementCount } from 'Action/counter';
 
 @connect((state) => {
-  return state;
+  // 给类添加指定的store数据
+  return state.counter;
 })
 class Counter extends Component {
   constructor(props) {
@@ -19,14 +20,14 @@ class Counter extends Component {
     this.props.dispatch(saga_incrementCount(10))
   }
   render(){
-    const { counter } = this.props;
+    const { number } = this.props;
 
     return(
       <div>
-        <h2>Number:{counter}</h2>
+        <h2>Number:{number}</h2>
         <button onClick={this._incrementCounter}>+</button>
         <button onClick={this._decrementCounter}>-</button>
-        <button onClick={this._sagaIncrementCounter}>&</button>
+        <button onClick={this._sagaIncrementCounter}>异步增加</button>
       </div>
     )
   }

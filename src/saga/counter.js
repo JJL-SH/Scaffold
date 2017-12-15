@@ -3,14 +3,21 @@ import { call, put } from 'redux-saga/effects';
 import { SAGA_INCREMENT, incrementCount } from 'Action/counter';
 
 function* fetchCounter(action) {
+  // 这里做了1秒的延时处理
   yield new Promise(function (resolve) {
     setTimeout(function () {
         resolve()
     }, 1000)
   })
-  yield put(incrementCount(action.index));
+  // 执行dispatch
+  yield put(incrementCount(action.number));
 }
 
-export function* mySaga() {
+function* mySaga() {
+  // 多次点击只执行最后一次
   yield* takeLatest(SAGA_INCREMENT, fetchCounter)
 }
+
+export default [
+  mySaga
+]
