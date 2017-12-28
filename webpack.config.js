@@ -24,6 +24,7 @@ module.exports = {
   output: {
     // 输出路径
     path: path.resolve(__dirname, 'dist'),
+    publicPath: path.resolve(__dirname, '/'),
     // 出入文件名称
     filename: '[name].[hash].js'
   },
